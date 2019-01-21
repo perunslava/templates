@@ -41,15 +41,15 @@ function foo {
 
     ## main - allowed flag combinations
     # -m -c
-    if [[ "$email_flag" == 'True' ]] && [[ "$check_flag" == 'True' ]]
+    if [[ "$email_flag" == 'True' && "$check_flag" == 'True' ]]
     then
         echo 'check'
     # -m -d
-    elif [[ "$email_flag" == 'True' ]] && [[ "$disable_flag" == 'True' ]]
+    elif [[ "$email_flag" == 'True' && "$disable_flag" == 'True' ]]
     then
         echo 'disable'
     # -m -e 
-    elif [[ "$email_flag" == 'True' ]] && [[ "$edit_flag" == 'True' ]]
+    elif [[ "$email_flag" == 'True' && "$edit_flag" == 'True' ]]
     then
         echo 'edit'
     else

@@ -54,6 +54,7 @@ function log_debug {
     local msg="${3}"
 
     logger -t ${SCRIPT_NAME} "DEBUG: [ ${caller} ] - ${var_name} >>${msg}<<"
+    #echo ${SCRIPT_NAME} "DEBUG: [ ${caller} ] - ${var_name} >>${msg}<<"
 }
 
 function log_msg {
@@ -61,6 +62,7 @@ function log_msg {
     local msg="${2}"
 
     logger -t ${SCRIPT_NAME} "[ ${caller} ] ${msg}"
+    #echo ${SCRIPT_NAME} "[ ${caller} ] ${msg}"
 }
 
 
@@ -77,23 +79,23 @@ function _config {
 
     # local variables
     local log_func="${FUNCNAME[0]}"
-    
-    if [ "${DEBUG}" == 'True' ]; then log_debug "${log_func}" "HOST_NAME" "${HOST_NAME}"; fi
+   
+    if [[ "${DEBUG}" == "True" ]]; then log_debug "${log_func}" "HOST_NAME" "${HOST_NAME}"; fi
 
     SRC_DIR="${SRC_VALUE}"
     DST_DIR="${DST_VALUE}"
-    if [ "${DEBUG}" == 'True' ]; then log_debug "${log_func}" "SRC_VALUE" "${SRC_VALUE}"; fi
-    if [ "${DEBUG}" == 'True' ]; then log_debug "${log_func}" "SRC_DIR" "${SRC_DIR}"; fi
-    if [ "${DEBUG}" == 'True' ]; then log_debug "${log_func}" "DST_VALUE" "${DST_VALUE}"; fi
-    if [ "${DEBUG}" == 'True' ]; then log_debug "${log_func}" "DST_DIR" "${DST_DIR}"; fi
+    if [[ "${DEBUG}" == 'True' ]]; then log_debug "${log_func}" "SRC_VALUE" "${SRC_VALUE}"; fi
+    if [[ "${DEBUG}" == 'True' ]]; then log_debug "${log_func}" "SRC_DIR" "${SRC_DIR}"; fi
+    if [[ "${DEBUG}" == 'True' ]]; then log_debug "${log_func}" "DST_VALUE" "${DST_VALUE}"; fi
+    if [[ "${DEBUG}" == 'True' ]]; then log_debug "${log_func}" "DST_DIR" "${DST_DIR}"; fi
 
-    if [ "${TMP_FLAG}" == 'True' ]
+    if [[ "${TMP_FLAG}" == 'True' ]]
     then
         TMP_DIR="/tmp/foo/bar/"
         DST_DIR="${TMP_DIR}/${DST_DIR}/"
     fi 
-    if [ "${DEBUG}" == 'True' ]; then log_debug "${log_func}" "TMP_DIR" "${TMP_DIR}"; fi
-    if [ "${DEBUG}" == 'True' ]; then log_debug "${log_func}" "DST_DIR" "${DST_DIR}"; fi
+    if [[ "${DEBUG}" == 'True' ]]; then log_debug "${log_func}" "TMP_DIR" "${TMP_DIR}"; fi
+    if [[ "${DEBUG}" == 'True' ]]; then log_debug "${log_func}" "DST_DIR" "${DST_DIR}"; fi
 }
 
 function init {
@@ -105,16 +107,16 @@ function init {
     local log_func="${FUNCNAME[0]}"
     local foo='local foo'
 
-    if [ "${DEBUG}" == 'True' ]; then log_debug "${log_func}" "foo" "${foo}"; fi
+    if [[ "${DEBUG}" == 'True' ]]; then log_debug "${log_func}" "foo" "${foo}"; fi
 
     # menu flags
-    if [ "${DEBUG}" == 'True' ]; then log_debug "${log_func}" "MENU_FLAGS" "${MENU_FLAGS}"; fi
+    if [[ "${DEBUG}" == 'True' ]]; then log_debug "${log_func}" "MENU_FLAGS" "${MENU_FLAGS}"; fi
 
-    if [ ! -d ${SRC_DIR} ]
+    if [[ ! -d ${SRC_DIR} ]]
     then
         log_msg "${log_func}" "Dir ${SRC_DIR} doesn't exist"
     fi
-    if [ ! -d ${DST_DIR} ]
+    if [[ ! -d ${DST_DIR} ]]
     then
         log_msg "${log_func}" "Dir ${DST_DIR} doesn't exist"
     fi
@@ -126,10 +128,10 @@ function copy {
     local log_func="${FUNCNAME[0]}"
     local foo='local foo'
 
-    if [ "${DEBUG}" == 'True' ]; then log_debug "${log_func}" "foo" "${foo}"; fi
+    if [[ "${DEBUG}" == 'True' ]]; then log_debug "${log_func}" "foo" "${foo}"; fi
 
     log_msg "${log_func}" "coping ..."
-    if [ "$?" -ne 0 ]
+    if [[ "$?" -ne 0 ]]
     then
         exit 1
     fi
@@ -141,10 +143,10 @@ function remove {
     local log_func="${FUNCNAME[0]}"
     local foo='local foo'
 
-    if [ "${DEBUG}" == 'True' ]; then log_debug "${log_func}" "foo" "${foo}"; fi
+    if [[ "${DEBUG}" == 'True' ]]; then log_debug "${log_func}" "foo" "${foo}"; fi
 
     log_msg "${log_func}" "removing ..."
-    if [ "$?" -ne 0 ]
+    if [[ "$?" -ne 0 ]]
     then
         exit 1
     fi
